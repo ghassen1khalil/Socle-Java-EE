@@ -1,7 +1,6 @@
 ==============================
 == Socle JavaEE application ==
 ==============================
-@author SiFAST
 
 ------------------
 ** Requirements **
