@@ -1,0 +1,39 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http auto-config="true" use-expressions="true">
+		<access-denied-handler error-page="/views/403.xhtml" />
+		<!-- <intercept-url pattern="/views/UsersList.xhtml" access="hasAnyRole('admin')" 
+			/> <intercept-url pattern="/views/RolesList.xhtml" access="hasAnyRole('admin')" 
+			/> <intercept-url pattern="/views/UsersRolesList.xhtml" access="hasAnyRole('admin')" 
+			/> -->
+		<form-login login-page="/views/Login.xhtml"
+			default-target-url="/views/Index.xhtml" authentication-failure-url="/views/Login.xhtml?auth=fail" />
+		<logout logout-url="/logout" success-handler-ref="loginLogoutTrackBean" />
+		<!-- // TODO Add comment for "1209600s" hwo much in hours/minutes ? -->
+		<remember-me data-source-ref="dataSource"
+			token-validity-seconds="1209600" />
+
+	</http>
+
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="sha">
+				<salt-source user-property="username" />
+			</password-encoder>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select USR_LOGIN,USR_PASSWORD,USR_ENABLED from T_USER where USR_LOGIN =? "
+
+				authorities-by-username-query="select ROL_ID,ROL_DESIGNATION from T_ROLE where ROL_ID IN
+					 (select ROL_ID from TJ_USER_ROLE where USR_ID=
+					 (select USR_ID from T_USER where USR_LOGIN=?)
+					  )" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

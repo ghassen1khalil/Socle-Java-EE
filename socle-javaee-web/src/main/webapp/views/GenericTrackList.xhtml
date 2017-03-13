@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../template/template.xhtml">
+
+	<ui:define name="content">
+		<ui:insert>
+
+			<!-- ***************************************** genericTrack list outputPanel ***************************************************-->
+			<h:form id="GenericTrack_Form" dir="auto">
+				<p:outputPanel id="genericTrack_List">
+					<p:dataTable var="genericTrack" value="#{genericTrackBean.genericTrackList}" widgetVar="genericTrack_Table" rows="20" paginator="true" rendered="true" emptyMessage="#{msg['NoRecordFound']}"
+						id="genericTrack_Table" filteredValue="#{genericTrackBean.filteredGenericTrackList}">
+						<f:facet name="header">
+							<div align="left">
+								<p:outputPanel>
+									<p:inputText id="globalFilter" onkeyup="PF('genericTrack_Table').filter()" placeholder="#{msg['SearchFields']}" />
+								</p:outputPanel>
+							</div>
+						</f:facet>
+
+						<p:column headerText="Entity" sortBy="#{genericTrack.entity}" filterBy="#{genericTrack.entity}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{genericTrack.entity}" />
+						</p:column>
+
+						<p:column headerText="Event type" sortBy="#{genericTrack.eventType}" filterBy="#{genericTrack.eventType}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{genericTrack.eventType}" />
+						</p:column>
+
+						<p:column headerText="Event date" sortBy="#{genericTrack.eventDate}" filterBy="#{genericTrack.eventDate}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{genericTrack.eventDate}">
+								<f:convertDateTime type="both" dateStyle="full" locale="#{languageBean.localeCode}" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="Record value" sortBy="#{genericTrack.recordValue}" filterBy="#{genericTrack.recordValue}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{genericTrack.recordValue}" />
+						</p:column>
+
+						<p:column headerText="Performed by" sortBy="#{genericTrack.performedBy}" filterBy="#{genericTrack.performedBy}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{genericTrack.performedBy}" />
+						</p:column>
+
+					</p:dataTable>
+				</p:outputPanel>
+			</h:form>
+
+		</ui:insert>
+	</ui:define>
+</ui:composition>

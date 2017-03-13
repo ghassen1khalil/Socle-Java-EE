@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+		<h:outputStylesheet name="css/lang_style.css" />
+
+		<h:outputScript name="js/main.js" />
+		<h:outputScript name="js/DetectLanguage.js" />
+		
+			<div class="language btn_fix relative_class" id="lang_id" >
+				<div class="clearfix selectLanguage ${languageBean.localeCode}">
+					<span class="label_language">#{msg['Language']} : </span>
+					<p:selectOneMenu value="#{languageBean.localeCode}" id="lang_fix" valueChangeListener="#{languageBean.onCountryLocaleCodeChange}" class="lang_position" >
+					<p:ajax update="loginForm" />
+						<f:selectItems value="#{languageBean.countriesInMap}" />
+					</p:selectOneMenu>
+				</div>	
+		   </div>
+</ui:composition>

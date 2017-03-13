@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<mvc:annotation-driven />
+	<aop:aspectj-autoproxy />
+
+	<!-- Activates scanning of annotations -->
+	<context:component-scan base-package="com.sifast.socle.javaee" />
+
+	<!-- Database Configuration -->
+	<import resource="/database/dataSource.xml" />
+	<import resource="/database/hibernate.xml" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- WS SOAP -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="roleSoapImpl" class="com.sifast.socle.javaee.webservice.soap.RoleServiceSoap" />
+	<jaxws:endpoint id="roleSoap" implementor="#roleSoapImpl" address="/roles" />
+
+	<bean id="userSoapImpl" class="com.sifast.socle.javaee.webservice.soap.UserServiceSoap" />
+	<jaxws:endpoint id="userSoap" implementor="#userSoapImpl" address="/users" />
+
+</beans>
+
+

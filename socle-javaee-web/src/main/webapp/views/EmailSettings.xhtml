@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../template/template.xhtml">
+
+	<ui:define name="content">
+		<ui:insert>
+
+			<p:outputPanel autoUpdate="true">
+				<h:form dir="auto">
+					<div style="position: absolute; left: 925px; top: 0px;">
+						<p:growl id="growl" showDetail="true" life="5000" />
+					</div>
+
+					<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-3">
+						<h:outputLabel value="#{msg['Host']} :" />
+						<p:inputText value="#{emailSettingsBean.smptHost}" id="smptHost" required="true" requiredMessage="#{msg['required']}" />
+						<p:message for="smptHost" />
+
+						<h:outputLabel value="#{msg['Port']} :" />
+						<p:inputText value="#{emailSettingsBean.smptPort}" id="smptPort" required="true" requiredMessage="#{msg['required']}" />
+						<p:message for="smptPort" />
+
+						<h:outputLabel value="#{msg['Protocol']} :" />
+						<p:inputText value="#{emailSettingsBean.smptProtocol}" id="smptProtocol" required="true" requiredMessage="#{msg['required']}" />
+						<p:message for="smptProtocol" />
+
+						<h:outputLabel value="#{msg['EmailAddress']} :" />
+						<p:inputText value="#{emailSettingsBean.smptUserName}" id="smptEmailAddress" required="true" requiredMessage="#{msg['required']}" />
+						<p:message for="smptEmailAddress" />
+
+						<h:outputLabel value="#{msg['Password']} :" />
+						<p:password redisplay="true" value="#{emailSettingsBean.smptPassword}" id="smptPassword" required="true" requiredMessage="#{msg['required']}" />
+						<p:message for="smptPassword" />
+
+					</p:panelGrid>
+					<p:commandButton action="#{emailSettingsBean.saveEmailSettings}" update="growl" id="submitButton" icon="ui-icon-disk" title="#{msg['Save']}" value="#{msg['Save']}" />
+
+
+				</h:form>
+			</p:outputPanel>
+
+		</ui:insert>
+	</ui:define>
+</ui:composition>

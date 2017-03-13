@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form id="formSideBar">
+		    <p:tieredMenu  class="width_class_st">
+				<p:submenu label="Company">
+					<p:menuitem value="#{msg['CompanyManagement']}" url="/views/Company/List.xhtml" />
+					<p:separator />
+				</p:submenu>
+				<p:submenu label="Building">
+					<p:menuitem value="#{msg['BuildingManagement']}" url="/views/Building/List.xhtml" />
+					<p:separator />
+				</p:submenu>
+				<p:submenu label="Department">
+					<p:menuitem value="#{msg['DepartementManagement']}" url="/views/Department/List.xhtml" />
+					<p:separator />
+				</p:submenu>
+				<p:submenu label="Roles management">
+					<p:menuitem value="#{msg['RoleManagement']}" url="/views/Role/List.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="Employe">
+					<p:menuitem value="#{msg['EmployeManagement']}" url="/views/Employe/List.xhtml" />
+					<p:separator />
+				</p:submenu>
+				<p:submenu label="zone">
+					<p:menuitem value="#{msg['ZoneManagement']}" url="/views/Zone/List.xhtml" />
+					<p:separator />
+				</p:submenu>
+				<p:submenu label="Holiday">
+					<p:menuitem value="#{msg['HolidayManagement']}" url="/views/Holiday/List.xhtml" />
+					<p:separator />
+				</p:submenu>
+			</p:tieredMenu>
+			
+	</h:form>
+</ui:composition>

@@ -1,0 +1,47 @@
+#cssmenu .ui-menu ul.ui-menu-list li.ui-menuitem{
+	float: right;
+}
+.ar .ui-menubar-options {
+    float: left !important;
+}
+
+.ar .ui-button-icon-left {
+    left: auto !important;
+    right: .5em !important;
+}
+
+
+.ar .ui-menu .ui-menu-list .ui-menuitem {
+	float: right;
+	direction: rtl;
+}
+.ar #cssmenu{
+	text-align: right;
+}
+.ar .ui-splitbutton{
+	padding-left: 2em;
+	padding-right:0;
+	margin-right: 2px;
+    margin-left: 15px;
+}
+
+.ar .ui-button-text-icon-left .ui-button-text {
+    padding: .3em 2.1em .3em 2.1em !important;
+}
+
+.ar .display_icon_ar{
+	opacity: 1;
+}
+#cssmenu .ar .ui-icon-triangle-1-e{
+	display: block;
+	
+}
+
+#cssmenu .ar .ui-icon-triangle-1-e {
+    background-position: -97px -16px;
+}
+
+.cssmenu .ar .ui-icon-triangle-1-e, .ar .Levelogger h3 .ui-icon {
+	background-position: -97px -16px;
+
+}

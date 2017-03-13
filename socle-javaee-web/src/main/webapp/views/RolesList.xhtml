@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../template/template.xhtml">
+
+	<ui:define name="content">
+		<div style="position: absolute; left: 925px; top: 0px;">
+			<p:growl for="growl" showDetail="true" life="5000" autoUpdate="true" />
+		</div>
+
+		<ui:insert>
+			<h:form id="Roles_Form" dir="auto">
+				<div class="align_btn_ar" align="right">
+					<p:commandButton action="#{roleBean.preCreate()}" oncomplete="PF('popAddRole').show();" icon="ui-icon-plus" value="#{msg.Nouveau}" />
+				</div>
+
+				<!-- ***************************************** roles list outputPanel ***************************************************-->
+				<p:outputPanel id="Roles_List" rendered="true" reflow="true" rows="5" paginator="true">
+					<p:dataTable var="role" value="#{roleBean.rolesList}" widgetVar="Role_Table" rows="10" paginator="true" rendered="true" emptyMessage="#{msg['NoRecordFound']}" id="Role_Table"
+						filteredValue="#{roleBean.filteredRolesList}">
+						<f:facet name="header">
+							<div align="left">
+								<p:outputPanel>
+									<p:inputText id="globalFilter" onkeyup="PF('Role_Table').filter()" placeholder="#{msg['SearchFields']}" />
+								</p:outputPanel>
+							</div>
+						</f:facet>
+
+						<p:column headerText="#{msg['Designation']}" sortBy="#{role.designation}" filterBy="#{role.designation}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{role.designation}" />
+						</p:column>
+
+						<p:column headerText="#{msg['Actions']}">
+							<p:outputPanel>
+								<p:commandButton oncomplete="PF('popEditRole').show();" icon="ui-icon-pencil">
+									<f:setPropertyActionListener value="#{role}" target="#{roleBean.role}" />
+								</p:commandButton>
+								<p:commandButton icon="ui-icon-trash" action="#{roleBean.delete}" update=":Roles_Form:Roles_List" title="#{msg.Delete}">
+									<f:setPropertyActionListener value="#{role}" target="#{roleBean.role}" />
+									<p:confirm header="#{msg.Confirmation}" message="#{msg.AreYouSure}" icon="ui-icon-alert" />
+								</p:commandButton>
+								<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+									<p:commandButton value="#{msg.Oui}" type="button" action="#{roleBean.delete}" update=":Roles_Form:Roles_List" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+									<p:commandButton value="#{msg.Non}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								</p:confirmDialog>
+							</p:outputPanel>
+						</p:column>
+
+					</p:dataTable>
+				</p:outputPanel>
+			</h:form>
+
+
+			<!-- ***************************************** Edit role dialog ***************************************************-->
+			<p:dialog widgetVar="popEditRole" modal="true" header="#{msg['Edit']}">
+				<p:ajax event="close" update=":Roles_Form:Roles_List" />
+				<p:outputPanel autoUpdate="true">
+					<h:form>
+						<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-3">
+							<h:outputLabel value="#{msg['Role']}" />
+							<p:inputText value="#{roleBean.role.designation}" id="designation" required="true" requiredMessage="#{msg['required']}" />
+							<p:message for="designation" />
+						</p:panelGrid>
+
+
+						<p:commandButton value="#{msg['Save']}" action="#{roleBean.update}" oncomplete="if (!args.validationFailed) PF('popEditRole').hide();" icon="ui-icon-disk" />
+						<p:commandButton value="#{msg['Cancel']}" action="#{roleBean.init}" oncomplete="PF('popEditRole').hide();" icon="ui-icon-cancel" />
+					</h:form>
+				</p:outputPanel>
+			</p:dialog>
+
+
+			<!-- ***************************************** Add role dialog ***************************************************-->
+			<p:dialog widgetVar="popAddRole" modal="true" header="#{msg['Add']}">
+				<p:ajax event="close" update=":Roles_Form:Roles_List" />
+				<p:outputPanel autoUpdate="true">
+					<h:form>
+						<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-3">
+							<h:outputLabel value="#{msg['Role']}" />
+							<p:inputText value="#{roleBean.role.designation}" id="designation" required="true" requiredMessage="#{msg['required']}" />
+							<p:message for="designation" />
+						</p:panelGrid>
+
+						<p:commandButton value="#{msg['Save']}" action="#{roleBean.save}" oncomplete="if (!args.validationFailed) PF('popAddRole').hide();" icon="ui-icon-disk" />
+						<p:commandButton value="#{msg['Cancel']}" action="#{roleBean.init}" oncomplete="PF('popAddRole').hide();" icon="ui-icon-cancel" />
+					</h:form>
+				</p:outputPanel>
+			</p:dialog>
+		</ui:insert>
+	</ui:define>
+</ui:composition>

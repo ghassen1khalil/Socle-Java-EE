@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../../template/template.xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="content">
+		<h:form class="ui-grid ui-grid-responsive ${languageBean.localeCode}" dir="auto">
+
+			<p:panel id="panel" header="#{msg['User']}">
+				<div class="align_btn_ar" align="right">
+
+					<p:commandButton value="#{msg['Save']}" action="#{userBean.update}" icon="ui-icon-disk" />
+					<p:commandButton value="#{msg['Cancel']}" action="#{userBean.init}" icon="ui-icon-cancel" immediate="true" />
+				</div>
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<p:panelGrid id="grid" columns="3" columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" layout="grid" styleClass="ui-responsive" width="100%">
+
+					<h:outputLabel value="#{msg['FirstName']} :" />
+					<p:inputText value="#{userBean.user.firstName}" id="firstName" required="true" requiredMessage="#{msg['required']}" />
+					<p:message for="firstName" />
+
+					<h:outputLabel value="#{msg['LastName']} :" />
+					<p:inputText value="#{userBean.user.lastName}" id="lastName" required="true" requiredMessage="#{msg['required']}" />
+					<p:message for="lastName" />
+
+					<h:outputLabel value="#{msg['Mail']} :" />
+					<p:inputText id="email" required="true" label="email" requiredMessage="#{msg['required']}" validatorMessage="Invalid email format" value="#{userBean.user.email}">
+						<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+					<p:message for="email" />
+
+					<h:outputLabel value="#{msg['Address']} :" />
+					<p:inputTextarea rows="1" cols="1" id="address" required="true" requiredMessage="#{msg['required']}" value="#{userBean.user.address}" />
+					<p:message for="address" />
+
+					<h:outputLabel value="#{msg['Phone']} :" />
+					<p:inputText value="#{userBean.user.phone}" id="phone" required="true" requiredMessage="#{msg['required']}" />
+					<p:message for="phone" />
+
+					<h:outputLabel value="#{msg['BirthDate']} :" />
+					<p:calendar id="birthDate" value="#{userBean.user.birthDate}" pattern="dd-MM-yyyy" mask="true" size="10" required="true" requiredMessage="#{msg['required']}" />
+					<p:message for="birthDate" />
+
+					<h:outputLabel value="#{msg['UserName']} :" />
+					<p:inputText id="userName" value="#{userBean.user.login}" required="true" requiredMessage="#{msg['required']}" />
+					<p:message for="userName" />
+
+					<p:outputLabel for="role" value="#{msg['Role']}" />
+					<p:selectManyMenu id="role" value="#{userBean.selectedRolesList}" converter="selectItemsConverter" var="t" filter="false" filterMatchMode="contains" showCheckbox="true">
+						<f:selectItems value="#{roleBean.rolesList}" var="role" itemLabel="#{role.designation}" itemValue="#{role}" />
+						<p:column>
+							<h:outputText value="#{t.designation}" />
+						</p:column>
+					</p:selectManyMenu>
+					<p:message for="role" />
+
+					<h:outputLabel value="#{msg['Enabled']} :" />
+					<p:selectBooleanCheckbox id="enabled" value="#{userBean.user.enabled}" />
+					<p:message for="enabled" />
+
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

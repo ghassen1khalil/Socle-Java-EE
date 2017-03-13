@@ -1,0 +1,55 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:sec="http://www.springframework.org/security/tags" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<h:outputScript name="js/menu.js" />
+
+	<h:form>
+	
+	<h:outputScript name="js/menu.js" />
+	
+		<c:choose>
+			<c:when test="${languageBean.localeCode == 'ar'}">
+				<h:outputStylesheet name="css/menu_ar.css" />
+			</c:when>
+		</c:choose>
+
+		<p:panelMenu class="${languageBean.localeCode} ">
+			<p:submenu label="#{msg['UsersManagement']}" class="sousmenu_position">
+				<p:menuitem value="#{msg['UsersManagement']}" url="/views/User/List.xhtml" />
+			</p:submenu>
+			<p:submenu label="#{msg['RolesManagement']}" class="sousmenu_position">
+				<p:menuitem value="#{msg['RolesManagement']}" url="/views/RolesList.xhtml" />
+			</p:submenu>
+			<p:submenu label="#{msg['Logging']}" class="sousmenu_position">
+				<p:menuitem value="#{msg['GeneralLogging']}" url="/views/GenericTrackList.xhtml" />
+				<p:separator />
+				<p:menuitem value="#{msg['ConnectionLogging']}" url="/views/LoginLogoutTrackList.xhtml" />
+				<p:separator />
+				<p:menuitem value="#{msg['GenerateConnectionsReport']}" action="#{loginLogoutTrackBean.generateReport}" ajax="false" />
+			</p:submenu>
+			<p:submenu label="#{msg['EmailSettings']}" class="sousmenu_position">
+				<p:menuitem value="#{msg['EmailSettings']}" url="/views/EmailSettings.xhtml" />
+			</p:submenu>
+		</p:panelMenu>
+
+	</h:form>
+
+	<ul class="Levelogger">
+		<li>
+			<h3>
+				<span class="ui-icon ui-icon-triangle-1-s ui-state-default"></span><span class="title">Tools</span>
+			</h3>
+			<ul>
+				<li><select id='idLevelogger'>
+						<option>----</option>
+						<option class="debug">debug</option>
+						<option class="info">info</option>
+						<option class="warn">warn</option>
+						<option class="error">error</option>
+						<option class="fatal">fatal</option>
+				</select></li>
+			</ul>
+		</li>
+	</ul>
+
+</ui:composition>

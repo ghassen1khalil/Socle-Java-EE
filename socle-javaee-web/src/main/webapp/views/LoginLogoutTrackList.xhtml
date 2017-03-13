@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../template/template.xhtml">
+
+	<ui:define name="content">
+		<ui:insert>
+
+			<h:form id="LoginLogoutTrack_Form" class="login-page" dir="auto">
+
+				<!-- ***************************************** Logging list outputPanel ***************************************************-->
+				<p:outputPanel id="LoginLogoutTrack_List" rendered="true">
+					<p:dataTable var="loginLogoutTrack" value="#{loginLogoutTrackBean.loginLogoutTrackList}" widgetVar="LoginLogoutTrack_Table" rows="8" paginator="true" rendered="true"
+						emptyMessage="#{msg['NoRecordFound']}" id="LoginLogoutTrack_Table" filteredValue="#{loginLogoutTrackBean.filteredLoginLogoutTrackList}">
+						<f:facet name="header">
+							<div align="left">
+								<p:outputPanel>
+									<p:inputText id="globalFilter" onkeyup="PF('LoginLogoutTrack_Table').filter()" placeholder="#{msg['SearchFields']}" />
+								</p:outputPanel>
+							</div>
+						</f:facet>
+
+						<p:column headerText="#{msg['User']}" sortBy="#{loginLogoutTrack.user.firstName}" filterBy="#{loginLogoutTrack.user.firstName}" filterStyle="display:none" filterMatchMode="contains">
+							<h:outputText value="#{loginLogoutTrack.user.firstName} &quote; #{loginLogoutTrack.user.lastName}" />
+						</p:column>
+
+						<p:column headerText="#{msg['LogonDate']}" sortBy="#{loginLogoutTrack.logonDate}" filterBy="#{loginLogoutTrack.logonDate}" filterStyle="display:none"
+							filterMatchMode="contains">
+							<h:outputText value="#{loginLogoutTrack.logonDate}">
+								<f:convertDateTime type="both" dateStyle="full" locale="#{languageBean.localeCode}" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{msg['LogoutDate']}" sortBy="#{loginLogoutTrack.logoutDate}" filterBy="#{loginLogoutTrack.logoutDate}" filterStyle="display:none"
+							filterMatchMode="contains">
+							<h:outputText value="#{loginLogoutTrack.logoutDate}">
+								<f:convertDateTime type="both" dateStyle="full" locale="#{languageBean.localeCode}" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{msg['IpAddress']}" sortBy="#{loginLogoutTrack.ipAddress}" filterBy="#{loginLogoutTrack.ipAddress}" filterStyle="display:none"
+							filterMatchMode="contains">
+							<h:outputText value="#{loginLogoutTrack.ipAddress}" />
+						</p:column>
+
+					</p:dataTable>
+				</p:outputPanel>
+			</h:form>
+		</ui:insert>
+	</ui:define>
+</ui:composition>

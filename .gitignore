@@ -1,0 +1,33 @@
+*target*
+*.jar
+*.war
+*.ear
+*.class
+*.dmp
+
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+.tern-project
+bin/**
+tmp/**
+tmp/**/*
+socle-javaee-persistence/.gitignore
+socle-javaee-common/.gitignore
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+*.log

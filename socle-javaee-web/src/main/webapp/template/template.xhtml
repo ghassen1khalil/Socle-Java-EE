@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:security="http://www.springframework.org/security/tags" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://java.sun.com/jsf/core" dir="auto" xmlns:o="http://omnifaces.org/ui" xmlns:of="http://omnifaces.org/functions">
+<f:view locale="#{languageBean.localeCode}" encoding="UTF-8" contentType="text/html">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<link rel="shortcut icon" href="#{resource['images/favicon.ico']}" />
+		<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,700' rel='stylesheet' type='text/css' />
+		<title>#{msg['appName']}</title>
+		<h:outputStylesheet name="css/screen.css" />
+		<o:conditionalComment if="IE">
+			<link rel="stylesheet" href="#{resource['css/ie_style.css']}" type="text/css" />
+		</o:conditionalComment>
+
+		<h:outputScript name="js/lib/moment.js" />
+		<h:outputScript name="js/lib/log-0.0.1.js" />
+		<h:outputScript name="js/ConfigLogger.js" />
+		<h:outputScript name="js/main.js" />
+		<h:outputScript name="js/language.js" />
+	</h:head>
+	<h:body class="${languageBean.localeCode}">
+		<h:panelGroup id="page" layout="block" class="page">
+			<ui:include src="/template/topMenu.xhtml" />
+			<ui:include src="/template/header.xhtml" />
+			<div class="page-wrap">
+				<aside class="separation_zone">
+					<h:panelGroup id="cssmenu" layout="block" class="cssmenu">
+						<ui:include src="/template/leftMenu.xhtml" />
+					</h:panelGroup>
+				</aside>
+				<section class="separation_zone">
+					<h:panelGroup id="bodytopmainPan" layout="block" class="bodytopmainPan">
+						<h:panelGroup id="bodytopPan" layout="block" class="bodytopPan">
+							<ui:insert name="content">Main Content</ui:insert>
+						</h:panelGroup>
+					</h:panelGroup>
+				</section>
+			</div>
+			<div class="clearfix"></div>
+			<ui:include src="/template/footer.xhtml" />
+		</h:panelGroup>
+	</h:body>
+</f:view>
+</html>

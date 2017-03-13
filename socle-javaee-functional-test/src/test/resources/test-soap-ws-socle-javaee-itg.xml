@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="06abdedb-4254-4d1c-837f-d5c5c5b437f0" activeEnvironment="Default" name="test-soap-ws-socle-javaee-itg" resourceRoot="" soapui-version="5.2.1"
+	abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+	<con:settings />
+	<con:interface xsi:type="con:WsdlInterface" id="3e33d259-4681-4a23-ae56-5d04dad1a94b" wsaVersion="NONE" name="RoleServiceSoapServiceSoapBinding" type="wsdl"
+		bindingName="{http://soap.webservice.javaee.socle.sifast.com/}RoleServiceSoapServiceSoapBinding" soapVersion="1_1" anonymous="optional"
+		definition="http://192.168.1.184:8001/socle-javaee-web/services/roles?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<con:settings />
+		<con:definitionCache type="TEXT" rootPart="http://192.168.1.184:8001/socle-javaee-web/services/roles?wsdl">
+			<con:part>
+				<con:url>http://192.168.1.184:8001/socle-javaee-web/services/roles?wsdl</con:url>
+				<con:content><![CDATA[<wsdl:definitions name="RoleServiceSoapService" targetNamespace="http://soap.webservice.javaee.socle.sifast.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.webservice.javaee.socle.sifast.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://soap.webservice.javaee.socle.sifast.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="delete" type="tns:delete"/>
+      <xs:element name="deleteResponse" type="tns:deleteResponse"/>
+      <xs:element name="findAll" type="tns:findAll"/>
+      <xs:element name="findAllResponse" type="tns:findAllResponse"/>
+      <xs:element name="saveOrUpdate" type="tns:saveOrUpdate"/>
+      <xs:element name="saveOrUpdateResponse" type="tns:saveOrUpdateResponse"/>
+      <xs:complexType name="saveOrUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:role"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="role">
+        <xs:complexContent>
+          <xs:extension base="tns:timestampEntity">
+            <xs:sequence>
+              <xs:element name="id" type="xs:int"/>
+              <xs:element minOccurs="0" name="designation" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="timestampEntity">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="saveOrUpdateResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:role"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delete">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="findAll">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="findAllResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:role"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="saveOrUpdate">
+    <wsdl:part element="tns:saveOrUpdate" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:delete" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAll">
+    <wsdl:part element="tns:findAll" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllResponse">
+    <wsdl:part element="tns:findAllResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:deleteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveOrUpdateResponse">
+    <wsdl:part element="tns:saveOrUpdateResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IRoleServiceSoap">
+    <wsdl:operation name="saveOrUpdate">
+      <wsdl:input message="tns:saveOrUpdate" name="saveOrUpdate"></wsdl:input>
+      <wsdl:output message="tns:saveOrUpdateResponse" name="saveOrUpdateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input message="tns:delete" name="delete"></wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAll">
+      <wsdl:input message="tns:findAll" name="findAll"></wsdl:input>
+      <wsdl:output message="tns:findAllResponse" name="findAllResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoleServiceSoapServiceSoapBinding" type="tns:IRoleServiceSoap">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="saveOrUpdate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="saveOrUpdate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="saveOrUpdateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="delete">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAll">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAll">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoleServiceSoapService">
+    <wsdl:port binding="tns:RoleServiceSoapServiceSoapBinding" name="RoleServiceSoapPort">
+      <soap:address location="http://192.168.1.184:8001/socle-javaee-web/services/roles"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content>
+				<con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+			</con:part>
+		</con:definitionCache>
+		<con:endpoints>
+			<con:endpoint>http://192.168.1.184:8001/socle-javaee-web/services/roles</con:endpoint>
+		</con:endpoints>
+		<con:operation id="8db551fb-877a-458f-b4d4-0ee226ee6fa1" isOneWay="false" action="" name="delete" bindingOperationName="delete" type="Request-Response" outputName="deleteResponse"
+			inputName="delete" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+			<con:settings />
+			<con:call id="8e916829-947a-44b2-b2a8-0562319c02c1" name="Request 1">
+				<con:settings>
+					<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+				</con:settings>
+				<con:encoding>UTF-8</con:encoding>
+				<con:endpoint>http://192.168.1.184:8001/socle-javaee-web/services/roles</con:endpoint>
+				<con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.webservice.javaee.socle.sifast.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:delete>\r
+         <arg0>3</arg0>\r
+      </soap:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request>
+				<con:credentials>
+					<con:authType>No Authorization</con:authType>
+				</con:credentials>
+				<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+				<con:jmsPropertyConfig />
+				<con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.webservice.javaee.socle.sifast.com/IRoleServiceSoap/delete" />
+				<con:wsrmConfig version="1.2" />
+			</con:call>
+		</con:operation>
+		<con:operation id="22eb0cdf-3909-4c9f-8770-a3c61b7be438" isOneWay="false" action="" name="findAll" bindingOperationName="findAll" type="Request-Response"
+			outputName="findAllResponse" inputName="findAll" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+			<con:settings />
+			<con:call id="53dd4a60-1139-4b75-b2f1-c767edfc714b" name="Request 1">
+				<con:settings>
+					<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+				</con:settings>
+				<con:encoding>UTF-8</con:encoding>
+				<con:endpoint>http://192.168.1.184:8001/socle-javaee-web/services/roles</con:endpoint>
+				<con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.webservice.javaee.socle.sifast.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:findAll/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request>
+				<con:credentials>
+					<con:authType>No Authorization</con:authType>
+				</con:credentials>
+				<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+				<con:jmsPropertyConfig />
+				<con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.webservice.javaee.socle.sifast.com/IRoleServiceSoap/findAll" />
+				<con:wsrmConfig version="1.2" />
+			</con:call>
+		</con:operation>
+		<con:operation id="1b67d1c6-22e8-484f-b470-6e5ae6b9ca38" isOneWay="false" action="" name="saveOrUpdate" bindingOperationName="saveOrUpdate" type="Request-Response"
+			outputName="saveOrUpdateResponse" inputName="saveOrUpdate" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+			<con:settings />
+			<con:call id="eb6656f2-c793-4e34-9895-de55d0d51c02" name="Request 1">
+				<con:settings>
+					<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+				</con:settings>
+				<con:encoding>UTF-8</con:encoding>
+				<con:endpoint>http://192.168.1.184:8001/socle-javaee-web/services/roles</con:endpoint>
+				<con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.webservice.javaee.socle.sifast.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:saveOrUpdate>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <id></id>\r
+            <!--Optional:-->\r
+            <designation>ff</designation>\r
+         </arg0>\r
+      </soap:saveOrUpdate>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request>
+				<con:credentials>
+					<con:authType>No Authorization</con:authType>
+				</con:credentials>
+				<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+				<con:jmsPropertyConfig />
+				<con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.webservice.javaee.socle.sifast.com/IRoleServiceSoap/saveOrUpdate" />
+				<con:wsrmConfig version="1.2" />
+			</con:call>
+		</con:operation>
+	</con:interface>
+	<con:interface xsi:type="con:RestService" id="64943a2b-f64a-437d-a80d-c2f9b44c27b2" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://192.168.1.184:8001"
+		type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<con:settings />
+		<con:definitionCache type="TEXT" rootPart="" />
+		<con:endpoints>
+			<con:endpoint>http://192.168.1.184:8001</con:endpoint>
+		</con:endpoints>
+		<con:resource name="List" path="/socle-javaee-web/rest/roles/list" id="c0a7b50c-a3e8-4839-8f1d-7d3d89cea74d">
+			<con:settings />
+			<con:parameters />
+			<con:method name="List" id="90391687-c58f-4192-9726-0daf5dd637fd" method="GET">
+				<con:settings />
+				<con:parameters />
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json;charset=utf-8</con:mediaType>
+					<con:status>200</con:status>
+					<con:params />
+					<con:element>Response</con:element>
+				</con:representation>
+				<con:request name="findAll" id="978f254c-a916-41e6-905c-438dc2a5ec40" mediaType="application/json">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>http://192.168.1.184:8001</con:endpoint>
+					<con:request />
+					<con:originalUri>http://192.168.1.184/socle-javaee-web/rest/roles/list</con:originalUri>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+					<con:jmsPropertyConfig />
+					<con:parameters />
+				</con:request>
+			</con:method>
+		</con:resource>
+	</con:interface>
+	<con:testSuite id="c796f79e-6d0d-4086-8406-902fb90b3d15" name="TestSuiteFindAll">
+		<con:settings />
+		<con:runType>PARALLELL</con:runType>
+		<con:testCase id="e93dc64b-4923-451b-99bc-7f9c76d6c400" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCaseFindAll"
+			searchProperties="true">
+			<con:settings />
+			<con:testStep type="request" id="21a81aee-282a-4e8e-bce9-8080e3e93aaf" name="findAll - RequestFindAll">
+				<con:settings />
+				<con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:interface>RoleServiceSoapServiceSoapBinding</con:interface>
+					<con:operation>findAll</con:operation>
+					<con:request name="findAll - RequestFindAll" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false"
+						wssPasswordType="" id="fc6caea6-4e60-4a07-b8fc-823e90ac9070">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+						</con:settings>
+						<con:encoding>UTF-8</con:encoding>
+						<con:endpoint>http://192.168.1.184:8001/socle-javaee-web/services/roles</con:endpoint>
+						<con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.webservice.javaee.socle.sifast.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:findAll/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request>
+						<con:assertion type="SOAP Response" id="457774c8-7270-43b3-913f-3392f642f26b" name="SOAP Response" />
+						<con:assertion type="Simple Contains" id="3909e4f5-1228-4d94-afc7-73488f3c6518" name="Contains">
+							<con:configuration>
+								<token>admin</token>
+								<ignoreCase>false</ignoreCase>
+								<useRegEx>false</useRegEx>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+						<con:jmsPropertyConfig />
+						<con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.webservice.javaee.socle.sifast.com/IRoleServiceSoap/findAll" />
+						<con:wsrmConfig version="1.2" />
+					</con:request>
+				</con:config>
+			</con:testStep>
+			<con:properties />
+		</con:testCase>
+		<con:testCase id="0f46c3f6-4a75-42bc-bf1c-9acbcea52d8f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0"
+			name="http://192.168.1.184:8001 TestSuite" searchProperties="true">
+			<con:settings />
+			<con:testStep type="restrequest" name="List" id="53039b5a-c423-4931-88d9-c5942f56cde1">
+				<con:settings />
+				<con:config service="http://192.168.1.184:8001" resourcePath="/socle-javaee-web/rest/roles/list" methodName="List" xsi:type="con:RestRequestStep"
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="List" id="978f254c-a916-41e6-905c-438dc2a5ec40" mediaType="application/json">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+						</con:settings>
+						<con:endpoint>http://192.168.1.184:8001</con:endpoint>
+						<con:request />
+						<con:originalUri>http://192.168.1.184/socle-javaee-web/rest/roles/list</con:originalUri>
+						<con:assertion type="Simple Contains" id="d5e83d17-d48e-472a-ac7c-c128bd21764d" name="Contains">
+							<con:configuration>
+								<token>admin</token>
+								<ignoreCase>false</ignoreCase>
+								<useRegEx>false</useRegEx>
+							</con:configuration>
+						</con:assertion>
+						<con:assertion type="Valid HTTP Status Codes" id="1409f10d-13c5-4a7e-a13f-4466bde25954" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>200</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+						<con:jmsPropertyConfig />
+						<con:parameters />
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+			<con:properties />
+		</con:testCase>
+		<con:properties />
+	</con:testSuite>
+	<con:properties />
+	<con:wssContainer />
+	<con:oAuth2ProfileContainer />
+	<con:sensitiveInformation />
+</con:soapui-project>
